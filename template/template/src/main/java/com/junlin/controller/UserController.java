@@ -1,6 +1,7 @@
 package com.junlin.controller;
 
 import com.junlin.model.OrderModel;
+import com.junlin.model.RoleModel;
 import com.junlin.model.UserModel;
 import com.junlin.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,16 @@ public class UserController {
         return orderModel;
     }
 
-//    @PostMapping("post")
-//    public
+    @GetMapping("GetRole")
+    public List<RoleModel> SelectRole(){
+        List<RoleModel> roleModels = userService.SelectRole();
+        return roleModels;
+    }
+
+    @GetMapping("GetRole/{id}")
+    public RoleModel SelectRoleById(@RequestParam(defaultValue = "1")int id){
+        RoleModel roleModel = userService.SelectRoleById(id);
+        return roleModel;
+    }
+
 }

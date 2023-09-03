@@ -8,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.junlin.mapper")
 public class SpringBootMain {
     public static void main(String args[]){
-        SpringApplication.run(SpringBootMain.class, args);
+        try{
+            SpringApplication.run(SpringBootMain.class, args);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

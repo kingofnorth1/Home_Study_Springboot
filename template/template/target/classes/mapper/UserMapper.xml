@@ -14,14 +14,29 @@
             <result property="userId" column="userid"></result>
         </collection>
     </resultMap>
-<!--    <select id="SelectUserByOrder" >-->
-<!--    </select>-->
     <select id="SelectUser" resultMap="userMap">
         select u.*,o.id id,o.user_id userid,o.order_name ordername,o.order_type ordertype from user u left join `order` o on u.id = o.user_id
     </select>
     <select id="SelectUserById" parameterType="int" resultMap="userMap">
         select u.*,o.id id,o.user_id userid,o.order_name ordername,o.order_type ordertype from user u left join `order` o on u.id = o.user_id where u.id = #{id}
     </select>
+
+    <resultMap id="roleMap" type="com.junlin.model.RoleModel">
+        <id property="rId" column="rid"></id>
+        <result property="roleName" column="rolename"></result>
+        <collection property="userList" ofType="com.junlin.model.UserModel">
+            <result property="password" column="password"></result>
+            <result property="username" column="username"></result>
+        </collection>
+    </resultMap>
+    <select id="SelectRole" resultMap="roleMap">
+        select r.*,u.password password,u.username username from role r left join user_role ur on r.rid = ur.roleId left join user u on ur.userId = u.id
+    </select>
+    <select id="SelectRoleById" resultMap="roleMap">
+        select r.*,u.password password,u.username username from role r left join user_role ur on r.rid = ur.roleId left join user u on ur.userId = u.id where r.rid = #{id}
+    </select>
+
+
     <insert id="InsertUser">
         insert into user values(#{id},#{username},#{password})
     </insert>
