@@ -6,8 +6,12 @@ import com.junlin.model.UserModel;
 import com.junlin.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("User")
@@ -51,5 +55,7 @@ public class UserController {
         RoleModel roleModel = userService.SelectRoleById(id);
         return roleModel;
     }
+
+
 
 }
